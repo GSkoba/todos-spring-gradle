@@ -5,6 +5,7 @@ var AddTodos = require('./components/AddTodos');
 var TodoList = require('./components/TodoList');
 var TodoActionsBar = require('./components/TodoActionsBar');
 var Request = require('./components/Request');
+
 function init() {
     var rusDictionary = {
         'todosCountLabel': ['task', 'tasks', 'tasks']
@@ -20,7 +21,8 @@ function init() {
     addTodos
         .on('newTodo',
             function (todoData) {
-            newTodoRequest(todoData);
+            newTodoRequest('POST','/test',todoData);
+            newTodoRequest('POST','/newTodo',todoData)
             todoList.createItem(todoData);
         }
         )
