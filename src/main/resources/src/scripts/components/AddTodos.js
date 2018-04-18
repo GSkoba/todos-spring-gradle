@@ -1,5 +1,6 @@
 var extendConstructor = require('../utils/extendConstructor');
 var Eventable = require('../modules/Eventable');
+var TodoList = require('./TodoList');
 
 var ENTER_KEY_CODE = 13;
 
@@ -30,18 +31,22 @@ addTodosConstructorPrototype._markAsReadyAll = function () {
 };
 
 addTodosConstructorPrototype._addItem = function () {
-
+    var todoList = new TodoList();
     var todoInputValue = this._todoInput.value.trim();
+    console.log(todoList);
+   // if () {
+        if (todoInputValue !== '') {
+            if (todoInputValue.length !== 0) {
+                this._todoInput.value = '';
+            }
 
-    if(todoInputValue !== '') {
-        if (todoInputValue.length !== 0) {
-            this._todoInput.value = '';
+            return this.trigger('newTodo', {
+                text: todoInputValue
+            });
         }
-
-        return this.trigger('newTodo', {
-            text: todoInputValue
-        });
-    }
+  //  }else {
+    //    alert('This todo in a list');
+    //}
 };
 
 addTodosConstructorPrototype.handleEvent = function (e) {
