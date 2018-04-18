@@ -42,7 +42,10 @@ function init() {
     }
 
     todoList.on('itemAdd', itemsCountWatcher)
-        .on('itemDelete', itemsCountWatcher);
+        .on('itemDelete', function () {
+
+            itemsCountWatcher;
+        });
 
     todoActionsBar.on(
         'clearCompleted',

@@ -10,6 +10,40 @@ newTodoRequest = function(method,url,data) {
 
     xhr.send(json);
 };
+delTodoRequest = function (data) {
+    var xhr = new XMLHttpRequest();
+
+    var json = JSON.stringify({
+        itemText: data.text
+    });
+
+    xhr.open("POST", "/delTodo", true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.send(json);
+
+};
+
+changeItemStateRequest = function (data) {
+
+    var xhr = new XMLHttpRequest();
+
+    var json = JSON.stringify({
+       itemText: data.text,
+       itemState: data.isReady
+    });
+
+    xhr.open("POST","/changeItemState",true);
+    xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    xhr.send(json);
+
+};
+
+markAsReadyAllRequest = function () {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST","/markAllLikeDone",true);
+    xhr.send();
+};
 
 getAllElementFromServer = function (todoList) {
     var xhr = new XMLHttpRequest();
@@ -21,7 +55,7 @@ getAllElementFromServer = function (todoList) {
                 todoList.createItem(todoData);
             });
         }
-    }
+    };
 
     xhr.open("GET",'/getAll',true);
     xhr.send();

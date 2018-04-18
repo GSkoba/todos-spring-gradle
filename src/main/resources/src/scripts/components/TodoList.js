@@ -1,6 +1,6 @@
 var Eventable = require('../modules/Eventable');
 var extendConstructor = require('../utils/extendConstructor');
-
+var Request = require("../components/Request");
 var TodoItem = require('../components/TodoItem');
 
 var TODO_LIST_SELECTOR = '.js-todos-list';
@@ -111,6 +111,7 @@ todoListConstructorPrototype._onItemRemove = function (itemId) {
  * @return {TodoListConstructor}
  */
 todoListConstructorPrototype.markAsReadyAll = function () {
+    markAsReadyAllRequest();
     this._items.forEach(function (todoItem) {
         todoItem.setReady(true);
     });

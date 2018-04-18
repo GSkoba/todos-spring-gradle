@@ -31,9 +31,9 @@ public class TodosController {
 
     @RequestMapping(value = "/delTodo",method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public @ResponseBody Todo delTodo(@RequestBody Map<String,Object> delTodo){
+    public void delTodo(@RequestBody Map<String,Object> delTodo){
         System.out.println("Event: delTodo");
-        return todoService.deleteItem(delTodo);
+        todoService.deleteItem(delTodo);
     }
 
     @RequestMapping(value = "/getAll",method = RequestMethod.GET)
@@ -44,5 +44,18 @@ public class TodosController {
     }
 
 
+    @RequestMapping(value = "/markAllLikeDone", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void markAllLikeDone(){
+        System.out.println("Event: mark All like Done");
+        todoService.makeAllDone();
+    }
+
+    @RequestMapping(value = "/changeItemState", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
+    public void changeItemState(@RequestBody Map<String, Object> changeItem){
+        System.out.println("Event: change State");
+        todoService.changeItemState(changeItem);
+    }
 
 }

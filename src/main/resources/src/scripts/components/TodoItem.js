@@ -1,6 +1,7 @@
 var Eventable = require('../modules/Eventable');
 var extendConstructor = require('../utils/extendConstructor');
 var templatesEngine = require('../modules/templatesEngine');
+var Request = require('../components/Request');
 
 var READY_MODIFICATOR = '__ready';
 var HIDDEN_MODIFICATOR = '__hide';
@@ -29,7 +30,8 @@ function TodoItemConstructor(itemData) {
     };
 
     if (itemData.isReady) {
-        this._setReadyModificator(true);
+       // this._setReadyModificator(true);
+        this.setReady(true);
     }
 
     this._markReady.addEventListener('change', this);
@@ -102,6 +104,7 @@ todoItemConstructorPrototype._setReadyModificator = function (isReady) {
  */
 todoItemConstructorPrototype.setReady = function (isReady) {
     if (isReady !== this.model.isReady) {
+        changeItemStateRequest(this.model);
         this._markReady.checked = isReady;
         this.model.isReady = isReady;
         this._setReadyModificator(isReady);
@@ -114,6 +117,7 @@ todoItemConstructorPrototype.setReady = function (isReady) {
  * @return {TodoItemConstructor}
  */
 todoItemConstructorPrototype.remove = function () {
+    delTodoRequest(this.model);
     this._root.parentNode.removeChild(this._root);
     this.trigger('remove', this.model.id);
     return this;
