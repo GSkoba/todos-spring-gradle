@@ -22,8 +22,7 @@ function init() {
     addTodos
         .on('newTodo',
             function (todoData) {
-            newTodoRequest('POST','/test',todoData);
-            newTodoRequest('POST','/newTodo',todoData)
+            newTodoRequest('POST','/newTodo',todoData);
             todoList.createItem(todoData);
         }
         )

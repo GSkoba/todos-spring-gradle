@@ -17,20 +17,19 @@ public class TodoService {
     @Autowired
     TodoRepository todoRepository;
 
-    public String getAll(){
+    public String getAll() {
         return new Gson().toJson(todoRepository.findAll());
     }
 
-    public Todo addItem(@RequestBody Map<String, Object> newTodo){
-        System.out.println("Event: addItem");
+    public Todo addItem(@RequestBody Map<String, Object> newTodo) {
         Todo todo = new Todo(newTodo.get("itemText").toString(), false);
         todoRepository.save(todo);
         return todo;
     }
 
-    public void deleteItem(@RequestBody Map<String, Object> delTodo){
-        for(Todo todo: todoRepository.findAll()){
-            if(todo.getText().equals(delTodo.get("itemText").toString())) {
+    public void deleteItem(@RequestBody Map<String, Object> delTodo) {
+        for (Todo todo : todoRepository.findAll()) {
+            if (todo.getText().equals(delTodo.get("itemText").toString())) {
                 todoRepository.delete(todo);
                 break;
             }
@@ -38,17 +37,17 @@ public class TodoService {
     }
 
 
-    public void makeAllDone(){
-        for(Todo todo:todoRepository.findAll()){
+    public void makeAllDone() {
+        for (Todo todo : todoRepository.findAll()) {
             todo.setState(true);
             todoRepository.save(todo);
         }
     }
 
-    public void changeItemState(@RequestBody Map<String, Object> changeItem){
-        for(Todo todo: todoRepository.findAll()){
+    public void changeItemState(@RequestBody Map<String, Object> changeItem) {
+        for (Todo todo : todoRepository.findAll()) {
 
-            if(todo.getText().equals(changeItem.get("itemText").toString()) && todo.isState() == (boolean)changeItem.get("itemState")){
+            if (todo.getText().equals(changeItem.get("itemText").toString()) && todo.isState() == (boolean) changeItem.get("itemState")) {
                 todo.setState(!todo.isState());
                 todoRepository.save(todo);
                 break;
