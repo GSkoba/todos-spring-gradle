@@ -22,8 +22,8 @@ function init() {
     addTodos
         .on('newTodo',
             function (todoData) {
-            newTodoRequest('POST','/newTodo',todoData);
-            todoList.createItem(todoData);
+                newTodoRequest('POST', '/newTodo', todoData);
+                todoList.createItem(todoData);
         }
         )
         .on('markAsReadyAll',

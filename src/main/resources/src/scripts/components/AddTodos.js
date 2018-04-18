@@ -30,15 +30,18 @@ addTodosConstructorPrototype._markAsReadyAll = function () {
 };
 
 addTodosConstructorPrototype._addItem = function () {
+
     var todoInputValue = this._todoInput.value.trim();
 
-    if (todoInputValue.length !== 0) {
-        this._todoInput.value = '';
-    }
+    if(todoInputValue !== '') {
+        if (todoInputValue.length !== 0) {
+            this._todoInput.value = '';
+        }
 
-    return this.trigger('newTodo', {
-        text: todoInputValue
-    });
+        return this.trigger('newTodo', {
+            text: todoInputValue
+        });
+    }
 };
 
 addTodosConstructorPrototype.handleEvent = function (e) {

@@ -15,7 +15,8 @@ function TodoItemConstructor(itemData) {
     this._initEventable();
 
     var templateResult = templatesEngine.todoItem({
-        text: itemData.text
+        text: itemData.text,
+        isReady: itemData.isReady || false
     });
 
     this._root = templateResult.root;
