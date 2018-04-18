@@ -1,5 +1,6 @@
 package com.todos.service;
 
+import com.google.gson.Gson;
 import com.todos.model.Todo;
 import com.todos.model.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,9 @@ public class TodoService {
     @Autowired
     TodoRepository todoRepository;
 
-
-
+    public String getAll(){
+        return new Gson().toJson(todoRepository.findAll());
+    }
 
     public Todo addItem(@RequestBody Map<String, Object> newTodo){
         System.out.println("Event: addItem");

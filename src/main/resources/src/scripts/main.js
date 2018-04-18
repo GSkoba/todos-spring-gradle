@@ -17,6 +17,7 @@ function init() {
     var todoList = new TodoList();
     var todoActionsBar = new TodoActionsBar();
 
+    getAllElementFromServer(todoList);
 
     addTodos
         .on('newTodo',

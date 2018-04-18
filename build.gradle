@@ -32,6 +32,7 @@ dependencies {
     compile("org.hibernate.validator:hibernate-validator")
     compile("org.apache.tomcat.embed:tomcat-embed-el")
     compile("com.zaxxer:HikariCP")
+    compile('com.google.code.gson:gson:2.7')
     runtime("org.postgresql:postgresql:9.4-1201-jdbc41")
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
