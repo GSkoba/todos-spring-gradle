@@ -22,7 +22,7 @@ public class TodoService {
     }
 
     public Todo addItem(@RequestBody Map<String, Object> newTodo) {
-        Todo todo = new Todo(newTodo.get("itemText").toString(), false);
+        Todo todo = new Todo(newTodo.get("itemText").toString(), false, "1");
         todoRepository.save(todo);
         return todo;
     }
