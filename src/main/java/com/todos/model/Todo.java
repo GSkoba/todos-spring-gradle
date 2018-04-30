@@ -12,10 +12,8 @@ public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-
     private String text;
-
+    private String userId;
     private boolean state;
 
     public Todo() {
@@ -23,9 +21,10 @@ public class Todo {
     }
 
 
-    public Todo(String text, boolean state) {
+    public Todo(String text, boolean state, String userId) {
         this.text = text;
         this.state = state;
+        this.userId = userId;
     }
 
     public void setId(Integer id) {
@@ -50,5 +49,13 @@ public class Todo {
 
     public void setState(boolean state) {
         this.state = state;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
