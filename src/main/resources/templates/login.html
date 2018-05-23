@@ -4,16 +4,24 @@
     <link rel="stylesheet" type="text/css" href="./dist/styles/login.css">
     <meta charset="UTF-8">
     <title>Login</title>
+    <style type="text/css">
+        .todos-login-header-title{
+            font-size: 86px;
+            font-weight: 100;
+            color: rgba(175, 47, 47, .15);
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <div class="login-page">
     <div class="todos-login-header">
-        <h1 class="todos-login-header-title">todos</h1>
+        <div class="todos-login-header-title">todos</div>
     </div>
     <div class="form">
         <form class="register-form" action="/register" method="post">
-            <input type="text" placeholder="name"/>
-            <input type="password" placeholder="password"/>
+            <input name = "username" type="text" placeholder="username" required/>
+            <input name = "password" type="password" placeholder="password" required/>
             <button>create</button>
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>

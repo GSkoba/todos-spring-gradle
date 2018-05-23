@@ -1,19 +1,18 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-
 .login-page {
     width: 360px;
-    /*
     padding: 8% 0 0;
-    */
     margin: auto;
 }
+
 .todos-login-header-title{
     font-size: 86px;
     font-weight: 100;
     color: rgba(175, 47, 47, .15);
     text-align: center;
 }
+
 .form {
     position: relative;
     z-index: 1;
@@ -43,7 +42,7 @@
     width: 100%;
     border: 1px solid #f2f2f2;
     padding: 15px;
-    color: #333;
+    color: red;
     border-radius:4px;
     font-size: 14px;
     -webkit-transition: all 0.3 ease;

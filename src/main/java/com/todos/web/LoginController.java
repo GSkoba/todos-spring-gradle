@@ -19,6 +19,20 @@ public class LoginController {
     @GetMapping(value = "/")
     public String getPage(@CookieValue(value = USER_ID_COOKIE, defaultValue = EMPTY_STRING) String userId,
                           @CookieValue(value = LOGIN_TOKEN_COOKIE, defaultValue = EMPTY_STRING) String sessionId) {
-        return LOGIN_PAGE;
+        if (sessionId.equals("")) {
+            return LOGIN_PAGE;
+        } else {
+            if(sessionService.isIdFormat(userId, 10)){
+                if (!sessionService.validate(userId, sessionId)) {
+                    return LOGIN_PAGE;
+                } else {
+                    return HOME_PAGE;
+                }
+            } else {
+                return LOGIN_PAGE;
+            }
+        }
     }
+
+
 }
