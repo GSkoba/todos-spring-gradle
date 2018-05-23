@@ -1,5 +1,7 @@
 package com.todos.web;
 
+import com.todos.service.SessionService;
+import com.todos.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -9,10 +11,10 @@ import static com.todos.utils.Utils.*;
 
 @Controller
 public class LoginController {
-    /*@Autowired
+    @Autowired
     private SessionService sessionService;
     @Autowired
-    private UserService userService;*/
+    private UserService userService;
 
     @GetMapping(value = "/")
     public String getPage(@CookieValue(value = USER_ID_COOKIE, defaultValue = EMPTY_STRING) String userId,

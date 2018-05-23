@@ -6,10 +6,8 @@ import com.todos.model.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class TodoService {
@@ -39,7 +37,7 @@ public class TodoService {
 
     public void makeAllDone() {
         for (Todo todo : todoRepository.findAll()) {
-            todo.setState(true);
+            todo.setDone(true);
             todoRepository.save(todo);
         }
     }
@@ -47,8 +45,8 @@ public class TodoService {
     public void changeItemState(@RequestBody Map<String, Object> changeItem) {
         for (Todo todo : todoRepository.findAll()) {
 
-            if (todo.getText().equals(changeItem.get("itemText").toString()) && todo.isState() == (boolean) changeItem.get("itemState")) {
-                todo.setState(!todo.isState());
+            if (todo.getText().equals(changeItem.get("itemText").toString()) && todo.isDone() == (boolean) changeItem.get("itemState")) {
+                todo.setDone(!todo.isDone());
                 todoRepository.save(todo);
                 break;
             }

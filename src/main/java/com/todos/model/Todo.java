@@ -14,16 +14,16 @@ public class Todo {
     private Integer id;
     private String text;
     private String userId;
-    private boolean state;
+    private boolean done;
 
     public Todo() {
 
     }
 
 
-    public Todo(String text, boolean state, String userId) {
+    public Todo(String text, boolean done, String userId) {
         this.text = text;
-        this.state = state;
+        this.done = done;
         this.userId = userId;
     }
 
@@ -43,12 +43,12 @@ public class Todo {
         this.text = text;
     }
 
-    public boolean isState() {
-        return state;
+    public boolean isDone() {
+        return done;
     }
 
-    public void setState(boolean state) {
-        this.state = state;
+    public void setDone(boolean done) {
+        this.done = done;
     }
 
     public String getUserId() {
