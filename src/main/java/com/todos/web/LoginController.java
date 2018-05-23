@@ -15,7 +15,6 @@ public class LoginController {
     private SessionService sessionService;
     @Autowired
     private UserService userService;
-
     @GetMapping(value = "/")
     public String getPage(@CookieValue(value = USER_ID_COOKIE, defaultValue = EMPTY_STRING) String userId,
                           @CookieValue(value = LOGIN_TOKEN_COOKIE, defaultValue = EMPTY_STRING) String sessionId) {

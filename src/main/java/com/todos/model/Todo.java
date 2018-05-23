@@ -9,10 +9,15 @@ public class Todo {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "judgements_id_seq")
+    @SequenceGenerator(name = "judgements_id_seq", sequenceName = "judgements_id_seq", allocationSize = 1)
     private Integer id;
     private String text;
-    private String userId;
+
+    @ManyToOne(optional = false,cascade = CascadeType.ALL)
+    @JoinColumn(name = "userId_id")
+    private User userId;
+
     private boolean done;
 
     public Todo() {
@@ -20,7 +25,7 @@ public class Todo {
     }
 
 
-    public Todo(String text, boolean done, String userId) {
+    public Todo(String text, boolean done, User userId) {
         this.text = text;
         this.done = done;
         this.userId = userId;
@@ -50,11 +55,11 @@ public class Todo {
         this.done = done;
     }
 
-    public String getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 }

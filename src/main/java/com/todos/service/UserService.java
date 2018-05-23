@@ -12,7 +12,7 @@ public class UserService {
     private UserRepository userRepository;
 
     public boolean createUser(String login, String password){
-        if(contains(login,password)) return false;
+//        if(contains(login,password)) return false;
         String hash = generateHashCode(password);
         User user = new User(login,hash);
         userRepository.save(user);

@@ -19,11 +19,11 @@ public class TodoService {
         return new Gson().toJson(todoRepository.findAll());
     }
 
-    public Todo addItem(@RequestBody Map<String, Object> newTodo) {
-        Todo todo = new Todo(newTodo.get("itemText").toString(), false, "1");
+   /* public Todo addItem(@RequestBody Map<String, Object> newTodo) {
+       // Todo todo = new Todo(newTodo.get("itemText").toString(), false, "1");
         todoRepository.save(todo);
         return todo;
-    }
+    }*/
 
     public void deleteItem(@RequestBody Map<String, Object> delTodo) {
         for (Todo todo : todoRepository.findAll()) {

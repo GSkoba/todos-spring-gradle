@@ -16,13 +16,13 @@ public class TodosController {
     @Autowired
     private TodoService todoService;
 
-    @RequestMapping(value = "/newTodo", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/newTodo", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public @ResponseBody
     Todo newTodo(@RequestBody Map<String, Object> newTodo) {
         return todoService.addItem(newTodo);
     }
-
+*/
     @RequestMapping(value = "/delTodo", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
     public void delTodo(@RequestBody Map<String, Object> delTodo) {

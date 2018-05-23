@@ -7,15 +7,18 @@ import javax.persistence.*;
 public class Session {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer userId;
+
+    @OneToOne (optional = false, cascade = CascadeType.ALL)
+    @JoinColumn (name = "userId_id")
+    private User userId;
     private String token;
 
     public Session() {
     }
 
-    public Session(Integer userId, String token) {
+    public Session(User userId, String token) {
         this.userId = userId;
         this.token = token;
     }
@@ -28,11 +31,11 @@ public class Session {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
