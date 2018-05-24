@@ -15,7 +15,7 @@ public class SessionService {
     private SessionRepository sessionRepository;
     private UserService userService = new UserService();
 
-   /*public String createSession(String login, String password){
+   public String createSession(String login, String password){
         Integer userId = userService.getUserId(login, password);
         if (userId == null) return null;
         else {
@@ -27,9 +27,9 @@ public class SessionService {
             sessionRepository.save(new Session(userId, token));
             return token;
         }
-    }*/
+    }
 
-    /*public String createSession(Integer userId){
+    public String createSession(Integer userId){
         if (userId == null) return null;
         else {
             String token = generateToken();
@@ -43,7 +43,7 @@ public class SessionService {
             }
             return token;
         }
-    }*/
+    }
 
     public boolean validate(String userId, String token){
         if (!isIdFormat(userId, 10)) return false;

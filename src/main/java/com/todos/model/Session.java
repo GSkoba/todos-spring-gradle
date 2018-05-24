@@ -3,22 +3,17 @@ package com.todos.model;
 import javax.persistence.*;
 
 @Entity
-@Table (name = "Session")
 public class Session {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
-    @OneToOne (optional = false, cascade = CascadeType.ALL)
-    @JoinColumn (name = "userId_id")
-    private User userId;
+    private Integer userId;
     private String token;
 
     public Session() {
     }
 
-    public Session(User userId, String token) {
+    public Session(Integer userId, String token) {
         this.userId = userId;
         this.token = token;
     }
@@ -31,11 +26,11 @@ public class Session {
         this.id = id;
     }
 
-    public User getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(User userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
