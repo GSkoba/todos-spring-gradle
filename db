@@ -1,0 +1,19 @@
+CREATE TABLE session(
+	session_id integer PRIMARY KEY,
+	user_id integer references todo_user(user_id),
+	token varchar(255)
+);
+
+CREATE TABLE todo_user(
+  user_id integer NOT NULL,
+  login character varying(50),
+  hash character varying(255),
+  CONSTRAINT todo_user_pkey PRIMARY KEY (user_id)
+);
+
+CREATE TABLE todo(
+	todo_id integer PRIMARY KEY,
+	user_id integer references todo_user(user_id),
+	task varchar(255),
+	done boolean
+);
