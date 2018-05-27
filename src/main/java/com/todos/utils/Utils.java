@@ -2,10 +2,7 @@ package com.todos.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Utils {
     final public static String LOGIN_PAGE = "login.html";

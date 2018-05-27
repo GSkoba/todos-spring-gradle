@@ -11,10 +11,12 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    private int id = 0;
+
     public boolean createUser(String login, String password){
         if(contains(login,password)) return false;
         String hash = generateHashCode(password);
-        User user = new User(login,hash);
+        User user = new User(id++,login,hash);
         userRepository.save(user);
         return userRepository.existsById(user.getId());
     }
@@ -38,7 +40,7 @@ public class UserService {
         return false;
     }
 
-    private String generateHashCode(String password){
+    public String generateHashCode(String password){
         return Integer.toString(password.hashCode());
     }
 

@@ -47,12 +47,14 @@ markAsReadyAllRequest = function () {
 };
 
 getAllElementFromServer = function (todoList) {
+    console.log("JSON");
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             var res = JSON.parse(this.responseText);
             res.forEach(function (todoData) {
-                todoList.createItem(todoData);
+                console.log(todoData);
+                todoList.createItem(todoData.get("task"));
             });
         }
     };

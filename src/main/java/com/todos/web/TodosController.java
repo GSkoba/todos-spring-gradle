@@ -16,7 +16,7 @@ import static com.todos.utils.Utils.LOGIN_TOKEN_COOKIE;
 import static com.todos.utils.Utils.USER_ID_COOKIE;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 public class TodosController {
 
     @Autowired
@@ -52,7 +52,7 @@ public class TodosController {
     String getAllTodo(@CookieValue(value = USER_ID_COOKIE, defaultValue = EMPTY_STRING) String userId,
                       @CookieValue(value = LOGIN_TOKEN_COOKIE, defaultValue = EMPTY_STRING) String token) {
         if (sessionService.validate(userId, token)) {
-            return todoService.getAll(userId, token);
+            return todoService.getAll(userId);
         }
         return null;
     }
@@ -60,8 +60,9 @@ public class TodosController {
 
     @RequestMapping(value = "/markAllLikeDone", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.OK)
-    public void markAllLikeDone() {
-        todoService.makeAllDone();
+    public void markAllLikeDone(@CookieValue(value = USER_ID_COOKIE, defaultValue = EMPTY_STRING) String userId,
+                                @CookieValue(value = LOGIN_TOKEN_COOKIE, defaultValue = EMPTY_STRING) String token) {
+        todoService.makeAllDone(userId);
     }
 
     @RequestMapping(value = "/changeItemState", method = RequestMethod.POST)
@@ -69,7 +70,7 @@ public class TodosController {
     public void changeItemState(@CookieValue(value = USER_ID_COOKIE, defaultValue = EMPTY_STRING) String userId,
                                 @CookieValue(value = LOGIN_TOKEN_COOKIE, defaultValue = EMPTY_STRING) String token,
                                 @RequestBody Map<String, Object> changeItem) {
-        todoService.changeItemState(changeItem);
+        todoService.changeItemState(changeItem,userId);
     }
 
 }

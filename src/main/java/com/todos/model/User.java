@@ -4,17 +4,23 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Table(name = "todo_user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private Integer id;
+
+    @Column(name = "login")
     private String login;
+
+    @Column(name = "hash")
     private String hash;
 
     public User() {
     }
 
-    public User(String login, String hash) {
+    public User(Integer id,String login, String hash) {
+        this.id = id;
         this.login = login;
         this.hash = hash;
     }

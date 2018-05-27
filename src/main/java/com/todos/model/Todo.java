@@ -4,17 +4,25 @@ import javax.persistence.*;
 
 
 @Entity
+@Table(name = "todo")
 public class Todo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "todo_id")
     private Integer id;
-    private String userId;
+
+    @Column(name = "user_id")
+    private Integer userId;
+
+    @Column(name = "task")
     private  String task;
+
+    @Column(name = "done")
     private boolean done;
 
     public Todo(){}
 
-    public Todo(String task, boolean done, String userId) {
+    public Todo(Integer id, String task, boolean done, Integer userId) {
+        this.id = id;
         this.task = task;
         this.done = done;
         this.userId = userId;
@@ -28,11 +36,11 @@ public class Todo {
         return id;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

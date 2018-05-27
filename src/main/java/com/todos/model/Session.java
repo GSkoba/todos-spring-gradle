@@ -3,17 +3,23 @@ package com.todos.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "session")
 public class Session {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "session_id")
     private Integer id;
+
+    @Column(name = "user_id")
     private Integer userId;
+
+    @Column(name = "token")
     private String token;
 
     public Session() {
     }
 
-    public Session(Integer userId, String token) {
+    public Session(Integer id, Integer userId, String token) {
+        this.id = id;
         this.userId = userId;
         this.token = token;
     }

@@ -13,7 +13,11 @@ import java.util.Optional;
 public class SessionService {
     @Autowired
     private SessionRepository sessionRepository;
-    private UserService userService = new UserService();
+
+    @Autowired
+    private UserService userService;
+
+    private int id = 0;
 
    public String createSession(String login, String password){
         Integer userId = userService.getUserId(login, password);
@@ -24,7 +28,7 @@ public class SessionService {
                     sessionRepository.findAll()) {
                 if (session.getUserId().equals(userId)) sessionRepository.delete(session);
             }
-            sessionRepository.save(new Session(userId, token));
+            sessionRepository.save(new Session(id++,userId, token));
             return token;
         }
     }
@@ -39,7 +43,7 @@ public class SessionService {
                 session.setToken(token);
                 sessionRepository.save(session);
             } else {
-                sessionRepository.save(new Session(userId, token));
+                sessionRepository.save(new Session(id++,userId, token));
             }
             return token;
         }

@@ -17,17 +17,20 @@ public class TodoService {
     @Autowired
     TodoRepository todoRepository;
 
-    public String getAll(String userId, String token) {
-        ArrayList<Todo> list = new ArrayList<>();
-        for (Todo todo:
-             todoRepository.findAll()) {
-            if (todo.getUserId().toString().equals(userId)) list.add(todo);
+    private int id = 0;
+
+    public String getAll(String userId) {
+        ArrayList<String> list = new ArrayList<>();
+        for (Todo todo :
+                todoRepository.findAll()) {
+            if (todo.getUserId().toString().equals(userId)) list.add(todo.getTask());
         }
-        return new Gson().toJson(list);
+        String data = new Gson().toJson(list);
+        return data;
     }
 
     public Todo addItem(@RequestBody Map<String, Object> newTodo, String userId) {
-        Todo todo = new Todo(newTodo.get("itemText").toString(), false,userId);
+        Todo todo = new Todo(id++, newTodo.get("itemText").toString(), false, Integer.parseInt(userId));
         todoRepository.save(todo);
         return todo;
     }
@@ -44,22 +47,24 @@ public class TodoService {
     }
 
 
-    public void makeAllDone() {
+    public void makeAllDone(String userId) {
         for (Todo todo : todoRepository.findAll()) {
-            todo.setDone(true);
-            todoRepository.save(todo);
+            if (todo.getUserId().toString().equals(userId)) {
+                todo.setDone(true);
+                todoRepository.save(todo);
+            }
         }
     }
 
-    public void changeItemState(@RequestBody Map<String, Object> changeItem) {
+    public void changeItemState(@RequestBody Map<String, Object> changeItem, String userId) {
         for (Todo todo : todoRepository.findAll()) {
-
-            if (todo.getTask().equals(changeItem.get("itemText").toString()) && todo.isDone() == (boolean) changeItem.get("itemState")) {
-                todo.setDone(!todo.isDone());
-                todoRepository.save(todo);
-                break;
+            if (todo.getUserId().toString().equals(userId)) {
+                if (todo.getTask().equals(changeItem.get("itemText").toString()) && todo.isDone() == (boolean) changeItem.get("itemState")) {
+                    todo.setDone(!todo.isDone());
+                    todoRepository.save(todo);
+                    break;
+                }
             }
-
         }
     }
 
