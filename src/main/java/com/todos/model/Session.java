@@ -19,7 +19,8 @@ public class Session {
     public Session() {
     }
 
-    public Session(Integer userId, String token) {
+    public Session(Integer id,Integer userId, String token) {
+        this.id = id;
         this.userId = userId;
         this.token = token;
     }

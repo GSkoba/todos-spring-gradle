@@ -22,7 +22,8 @@ public class Todo {
 
     public Todo(){}
 
-    public Todo(String task, boolean done, Integer userId) {
+    public Todo(Integer id, String task, boolean done, Integer userId) {
+        this.id = id;
         this.task = task;
         this.done = done;
         this.userId = userId;

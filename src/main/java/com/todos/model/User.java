@@ -20,7 +20,8 @@ public class User {
     public User() {
     }
 
-    public User(String login, String hash) {
+    public User(Integer id, String login, String hash) {
+        this.id = id;
         this.login = login;
         this.hash = hash;
     }

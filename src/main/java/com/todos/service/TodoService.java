@@ -1,6 +1,7 @@
 package com.todos.service;
 
 import com.google.gson.Gson;
+import com.todos.model.Session;
 import com.todos.model.Todo;
 import com.todos.model.TodoRepository;
 import com.todos.model.User;
@@ -17,6 +18,8 @@ public class TodoService {
     @Autowired
     TodoRepository todoRepository;
 
+    private int id = 0;
+
     public String getAll(String userId) {
         ArrayList<String> list = new ArrayList<>();
         for (Todo todo :
@@ -28,7 +31,7 @@ public class TodoService {
     }
 
     public Todo addItem(@RequestBody Map<String, Object> newTodo, String userId) {
-        Todo todo = new Todo(newTodo.get("itemText").toString(), false, Integer.parseInt(userId));
+        Todo todo = new Todo(id++, newTodo.get("itemText").toString(), false, Integer.parseInt(userId));
         todoRepository.save(todo);
         return todo;
     }
