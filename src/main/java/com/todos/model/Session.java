@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Session {
     @Id
     @Column(name = "session_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "user_id")
@@ -18,8 +19,7 @@ public class Session {
     public Session() {
     }
 
-    public Session(Integer id, Integer userId, String token) {
-        this.id = id;
+    public Session(Integer userId, String token) {
         this.userId = userId;
         this.token = token;
     }

@@ -8,6 +8,7 @@ import java.util.Collection;
 public class User {
     @Id
     @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "login")
@@ -19,8 +20,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer id,String login, String hash) {
-        this.id = id;
+    public User(String login, String hash) {
         this.login = login;
         this.hash = hash;
     }

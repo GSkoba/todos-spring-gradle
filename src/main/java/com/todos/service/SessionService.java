@@ -17,8 +17,6 @@ public class SessionService {
     @Autowired
     private UserService userService;
 
-    private int id = 0;
-
    public String createSession(String login, String password){
         Integer userId = userService.getUserId(login, password);
         if (userId == null) return null;
@@ -28,7 +26,7 @@ public class SessionService {
                     sessionRepository.findAll()) {
                 if (session.getUserId().equals(userId)) sessionRepository.delete(session);
             }
-            sessionRepository.save(new Session(id++,userId, token));
+            sessionRepository.save(new Session(userId, token));
             return token;
         }
     }
@@ -43,7 +41,7 @@ public class SessionService {
                 session.setToken(token);
                 sessionRepository.save(session);
             } else {
-                sessionRepository.save(new Session(id++,userId, token));
+                sessionRepository.save(new Session(userId, token));
             }
             return token;
         }

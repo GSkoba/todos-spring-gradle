@@ -8,6 +8,7 @@ import javax.persistence.*;
 public class Todo {
     @Id
     @Column(name = "todo_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "user_id")
@@ -21,8 +22,7 @@ public class Todo {
 
     public Todo(){}
 
-    public Todo(Integer id, String task, boolean done, Integer userId) {
-        this.id = id;
+    public Todo(String task, boolean done, Integer userId) {
         this.task = task;
         this.done = done;
         this.userId = userId;
